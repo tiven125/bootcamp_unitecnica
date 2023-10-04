@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <div class="header_logo">
+        <img
+          src="https://i.etsystatic.com/24961489/r/il/a46e82/2636191477/il_1140xN.2636191477_8khh.jpg"
+          alt=""
+        />
+      </div>
+
+      <nav class="header_nav">
+        <a class="estilosa" href="">Doc</a>
+        <a class="estilosa" href="">About</a>
+        <a class="asoporte" href="">Support US</a>
+      </nav>
+    </header>
+
+    <section class="section_banner"></section>
+
+    <section class="section_boones">
+      <img class="section_titilo" src="img/titulo.png" alt="" />
+      <div class="btnNavegacion" id="navigation">
+        <button class="boton primary" id="paginaInicio">ir al inicio</button>
+        <button class="boton primary" id="paginaSiguiente">
+          ir a la Siguiente
+        </button>
+        <button class="boton primary" id="PaginaAnterior">
+          página Anterior
+        </button>
+        <button class="boton primary" id="PaginaUltima">última página</button>
+        <input
+          class="input boton"
+          type="number"
+          id="page-number"
+          min="1"
+          placeholder="ingrese numero"
+        />
+        <button class="boton primary" id="BuscarPagina">Buscar</button>
+      </div>
+    </section>
+
+    <section class="section_cards">
+      <div class="resultado" id="resultado"></div>
+    </section>
+
+    <script type="module" src="app.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
