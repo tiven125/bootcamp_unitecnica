@@ -3,7 +3,7 @@ let resultado = "";
 
 buttons.forEach((btn) => {
   btn.addEventListener("click", () => {
-    // console.log(btn.value);
+    console.log(btn);
     mostrarPantalla(btn);
 
     btn.value === "Ac" ? limpiarResultado() : null;
