@@ -1,16 +1,24 @@
+// usuariosController.js
 const Usuario = require("../model/Usuario");
+const ROLES = require("../constants/roles");
 
 const usuariosController = {
   // Método para registrar un nuevo usuario
   registrarUsuario: async (req, res) => {
-    const { nombreUsuario, email, contrasena } = req.body;
+    const { nombre_usuario, email, contrasena, rol } = req.body;
 
     try {
+      // Verificar si el rol es válido
+      if (![ROLES.ADMIN, ROLES.RECOLECTOR].includes(rol)) {
+        return res.status(400).json({ mensaje: "Rol no válido" });
+      }
+
       // Crear un nuevo usuario
       const usuario = await Usuario.create({
-        nombreUsuario,
+        nombre_usuario,
         email,
         contrasena,
+        rol,
       });
 
       // Si el usuario se crea con éxito, devolver un mensaje de éxito con estado 201

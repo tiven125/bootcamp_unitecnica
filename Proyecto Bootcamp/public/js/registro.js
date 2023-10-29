@@ -1,40 +1,38 @@
-document
-  .getElementById("registroForm")
-  .addEventListener("submit", function (event) {
-    event.preventDefault();
+async function registrarUsuario() {
+  const nombre_usuario = document.getElementById("nombre_usuario").value;
+  const email = document.getElementById("email").value;
+  const contrasena = document.getElementById("contrasena").value;
+  const rol = document.getElementById("rol").value;
 
-    const nombreUsuario = document.getElementsByName("nombreUsuario")[0].value;
-    const email = document.getElementsByName("email")[0].value;
-    const contrasena = document.getElementsByName("contrasena")[0].value;
-
-    fetch("/usuarios", {
+  try {
+    const response = await fetch("/usuarios", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ nombreUsuario, email, contrasena }),
-    })
-      .then((response) =>
-        response.json().then((data) => ({ status: response.status, data }))
-      )
-      .then(({ status, data }) => {
-        if (status === 201) {
-          // Mostrar un mensaje de éxito
-          Swal.fire({
-            icon: "success",
-            title: "Éxito",
-            text: "Usuario registrado con éxito",
-          });
-        } else {
-          // Mostrar un mensaje de error
-          Swal.fire({
-            icon: "error",
-            title: "Error",
-            text: data.mensaje,
-          });
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
+      body: JSON.stringify({ nombre_usuario, email, contrasena, rol }),
+    });
+
+    if (response.ok) {
+      Swal.fire({
+        icon: "success",
+        title: "Éxito",
+        text: "Usuario registrado con éxito",
       });
-  });
+    } else {
+      const data = await response.json();
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: data.mensaje,
+      });
+    }
+  } catch (error) {
+    console.error(error);
+    Swal.fire({
+      icon: "error",
+      title: "Error",
+      text: "Se ha producido un error al intentar registrar el usuario. Por favor, inténtalo de nuevo más tarde.",
+    });
+  }
+}

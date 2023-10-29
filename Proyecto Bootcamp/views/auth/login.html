@@ -23,35 +23,53 @@
             <h2 class="title">Iniciar sesion</h2>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" placeholder="Username" name="UsernameLogin" />
+              <input type="text" placeholder="Username" name="nombreUsuario" />
+            </div>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              <input type="password" placeholder="Password" name="contrasena" />
+            </div>
+            <input type="submit" value="Login" class="btn solid" />
+            <p class="social-text">Olvido De contraseña</p>
+          </form>
+
+          <form class="sign-up-form" id="registroForm">
+            <h2 class="title">Inscribirse</h2>
+            <div class="input-field">
+              <i class="fas fa-user"></i>
+              <input
+                type="text"
+                placeholder="Username"
+                name="nombre_usuario"
+                id="nombre_usuario"
+              />
+            </div>
+            <div class="input-field">
+              <i class="fas fa-envelope"></i>
+              <input type="email" placeholder="Email" name="email" id="email" />
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
               <input
                 type="password"
                 placeholder="Password"
-                name="passwordLogin"
+                name="contrasena"
+                id="contrasena"
               />
             </div>
-            <input type="submit" value="Login" class="btn solid" />
-            <p class="social-text">Olvido De contraseña</p>
-          </form>
-
-          <form action="#" class="sign-up-form" id="registroForm">
-            <h2 class="title">Inscribirse</h2>
             <div class="input-field">
-              <i class="fas fa-user"></i>
-              <input type="text" placeholder="Username" name="nombreUsuario" />
+              <i class="fas fa-users"></i>
+              <select name="rol" id="rol">
+                <option value="administrador">Administrador</option>
+                <option value="recolector">Recolector</option>
+              </select>
             </div>
-            <div class="input-field">
-              <i class="fas fa-envelope"></i>
-              <input type="email" placeholder="Email" name="email" />
-            </div>
-            <div class="input-field">
-              <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" name="contrasena" />
-            </div>
-            <input type="submit" class="btn" value="Sign up" />
+            <input
+              type="button"
+              class="btn"
+              value="Sign up"
+              onclick="registrarUsuario()"
+            />
           </form>
         </div>
       </div>

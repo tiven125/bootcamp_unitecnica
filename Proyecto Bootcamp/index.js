@@ -3,6 +3,7 @@ const path = require("path");
 const app = express();
 const sequelize = require("./config/db");
 const session = require("express-session");
+const Usuario = require("./model/Usuario"); // Asegúrate de que la ruta es correcta
 
 // Variables de Desarrollo
 require("dotenv").config({ path: "variables.env" });
@@ -47,24 +48,18 @@ function estaAutenticado(req, res, next) {
 
 // Importar rutas
 const authRoutes = require("./routes/authRoutes");
-const userRoutes = require("./routes/userRoutes");
-const paymentRoutes = require("./routes/paymentRoutes");
-const otherRoutes = require("./routes/otherRoutes");
 
 // Utilizar rutas
 app.use("/", authRoutes);
-app.use("/usuario", estaAutenticado, userRoutes);
-app.use("/pagos", estaAutenticado, paymentRoutes);
-app.use("/otros", estaAutenticado, otherRoutes);
 
-// Conectar a la base de datos
+// Sincronizar los modelos con la base de datos
 sequelize
-  .authenticate()
+  .sync({ force: false }) // Usar { force: true } solo si quieres borrar y recrear las tablas
   .then(() => {
-    console.log("Conexión a la base de datos establecida con éxito.");
+    console.log("Tablas sincronizadas");
   })
   .catch((err) => {
-    console.error("No se pudo conectar a la base de datos:", err);
+    console.error("Error al sincronizar las tablas:", err);
   });
 
 // Iniciar el servidor

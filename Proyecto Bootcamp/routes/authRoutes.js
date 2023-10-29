@@ -2,12 +2,10 @@ const express = require("express");
 const router = express.Router();
 
 const usuariosController = require("../controller/usuariosController"); // Asegúrate de que esta ruta apunta a tu archivo de controlador de usuarios
-const authController = require("../controller/iniciarSesionController");
 
 // Registrar Usuario
 router.post("/usuarios", usuariosController.registrarUsuario);
 // Iniciar Session
-router.post("/iniciar-sesion", authController.iniciarSesion);
 
 router.get("", (req, res) => {
   res.render(`../views/auth/login.html`);
