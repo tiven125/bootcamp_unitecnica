@@ -3,7 +3,7 @@ const path = require("path");
 const app = express();
 const sequelize = require("./config/db");
 const session = require("express-session");
-const Usuario = require("./model/Usuario"); // Asegúrate de que la ruta es correcta
+const Usuario = require("./model/Usuario");
 
 // Variables de Desarrollo
 require("dotenv").config({ path: "variables.env" });
@@ -25,7 +25,6 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 
 // Configuración de express-session para iniciar sesión
-
 app.use(
   session({
     secret: "mi-secreto",
@@ -36,15 +35,6 @@ app.use(
     },
   })
 );
-
-// Middleware de autenticación
-function estaAutenticado(req, res, next) {
-  console.log(req.session);
-  if (req.session.usuario) {
-    return next();
-  }
-  res.redirect("/");
-}
 
 // Importar rutas
 const authRoutes = require("./routes/authRoutes");

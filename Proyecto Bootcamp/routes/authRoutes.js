@@ -1,22 +1,28 @@
 const express = require("express");
 const router = express.Router();
 
-const usuariosController = require("../controller/usuariosController"); // Asegúrate de que esta ruta apunta a tu archivo de controlador de usuarios
-const authController = require("../controller/loginController"); // Asegúrate de que esta ruta apunta a tu archivo de controlador de autenticación
+const usuariosController = require("../controller/usuariosController");
+const authController = require("../controller/loginController");
+const {
+  estaAutenticado,
+  esAdministrador,
+  esRecolector,
+} = require("../middlewares/autenticacion");
 
 // Registrar Usuario
 router.post("/usuarios", usuariosController.registrarUsuario);
+
 // Iniciar Sesión
 router.post("/iniciar-sesion", authController.iniciarSesion);
 
-// Ruta para administradores
-router.get("/admin/prueba", (req, res) => {
+// Ruta protegida para administradores
+router.get("/admin", estaAutenticado, esAdministrador, (req, res) => {
   // Aquí deberías renderizar la vista que quieres mostrar para los administradores
   res.render(`../views/auth/prueba.html`);
 });
 
-// Ruta para recolectores
-router.get("/cafetero", (req, res) => {
+// Ruta protegida para recolectores
+router.get("/cafetero", estaAutenticado, esRecolector, (req, res) => {
   // Aquí deberías renderizar la vista que quieres mostrar para los recolectores
   res.render(`../views/auth/prueba.html`);
 });

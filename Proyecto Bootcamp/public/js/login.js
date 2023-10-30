@@ -26,11 +26,9 @@ document
 
           // Redirigir al usuario a la página correspondiente basándote en su rol
           if (data.data.rol === "administrador") {
-            console.log("Iniciando sesión como administrador");
-            window.location.href = "/admin/prueba"; // Ruta para administradores
+            window.location.href = "/admin"; // Ruta para administradores
           } else if (data.data.rol === "recolector") {
-            console.log("Iniciando sesión como recolector");
-            window.location.href = "/cafetero/prueba"; // Ruta para recolectores
+            window.location.href = "/cafetero"; // Ruta para recolectores
           } else {
             console.log("Rol desconocido:", data.data.rol);
           }

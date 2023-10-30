@@ -22,7 +22,15 @@ const authController = {
         const esValida = await bcrypt.compare(contrasena, usuario.contrasena);
 
         if (esValida) {
-          console.log("Inicio de sesión exitoso para:", nombreUsuario);
+          // console.log("Inicio de sesión exitoso para:", nombreUsuario);
+          console.log("Inicio de sesión exitoso para:", usuario.rol);
+
+          // Configurar el objeto de sesión
+          req.session.usuario = {
+            nombreUsuario: usuario.nombre_usuario,
+            rol: usuario.rol,
+          };
+
           // Si la contraseña es correcta, enviar la información del usuario en la respuesta
           res.json({
             mensaje: "Inicio de sesión exitoso",
