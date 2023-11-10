@@ -18,7 +18,8 @@
     "express-session": "^1.17.3",
     "pg": "^8.11.3",
     "sequelize": "^6.33.0",
-    "sweetalert2": "^11.7.32"
+    "sweetalert2": "^11.7.32",
+    "tabulator-tables": "^5.5.2"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"

@@ -3,7 +3,7 @@ const path = require("path");
 const app = express();
 const sequelize = require("./config/db");
 const session = require("express-session");
-const Usuario = require("./model/Usuario");
+const Tabulator = require("tabulator-tables");
 
 // Variables de Desarrollo
 require("dotenv").config({ path: "variables.env" });
@@ -38,9 +38,11 @@ app.use(
 
 // Importar rutas
 const authRoutes = require("./routes/authRoutes");
+const userRoutes = require("./routes/usuariosRoutes");
 
 // Utilizar rutas
 app.use("/", authRoutes);
+app.use("/usuarios", userRoutes);
 
 // Sincronizar los modelos con la base de datos
 sequelize

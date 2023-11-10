@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu Admin</title>
+    <link rel="stylesheet" href="css/styleHome.css" />
+    <link rel="stylesheet" href="css/stylesMenu.css" />
+    <link rel="shortcut icon" href="img/plantaIco.png " type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="/node_modules/sweetalert2/dist/sweetalert2.min.css"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <a href="https://codigo369.com/" target="_blank" class="logo">
+        <img src="img/logoBanner.png" alt="logo" />
+
+        <h1>Bienvenido, <span id="mostrarNombre"></span>!</h1>
+      </a>
+      <nav>
+        <!-- <a href="" class="nav-link">Inicio</a>
+        <a href="" class="nav-link">Codigos</a> -->
+        <a id="logoutButton" class="nav-link">Cerrar Sesecion</a>
+      </nav>
+    </header>
+
+    <div class="contenido">
+      <section class="container">
+        <div id="irGestionUsuarios" class="serviceBox">
+          <div class="icon" style="--i: #4eb7ff">
+            <ion-icon name="people-outline"></ion-icon>
+          </div>
+          <div class="content">
+            <h2>Usuarios</h2>
+            <p>
+              gestión administradores,recolectores y cambiar las contraseñas.
+            </p>
+          </div>
+        </div>
+
+        <div class="serviceBox">
+          <div class="icon" style="--i: #fd6494">
+            <ion-icon name="body-outline"></ion-icon>
+          </div>
+          <div class="content">
+            <h2>Recolectores</h2>
+            <p>
+              gestionar la información de los recolectores de café, como su
+              nombre, información de contacto, y la cantidad de café
+              recolectado.
+            </p>
+          </div>
+        </div>
+        <div class="serviceBox">
+          <div class="icon" style="--i: #43f390">
+            <ion-icon name="newspaper-outline"></ion-icon>
+          </div>
+          <div class="content">
+            <h2>Inventario</h2>
+            <p>
+              Gestionar el inventario de café involucra controlar el stock, las
+              fechas de caducidad, y los lotes, además de registrar entradas y
+              salidas del inventario.
+            </p>
+          </div>
+        </div>
+        <div class="serviceBox">
+          <div class="icon" style="--i: #ffb508">
+            <ion-icon name="leaf-outline"></ion-icon>
+          </div>
+          <div class="content">
+            <h2>Cultivos</h2>
+            <p>
+              La información de lotes de café incluye ubicación, tamaño,
+              variedad, fecha de cosecha, rendimiento y calidad.
+            </p>
+          </div>
+        </div>
+        <div class="serviceBox">
+          <div class="icon" style="--i: #37ba82">
+            <ion-icon name="cash-outline"></ion-icon>
+          </div>
+          <div class="content">
+            <h2>Nómina</h2>
+            <p>
+              Gestiona pagos a recolectores con funciones para salarios base,
+              bonificaciones y descuentos según café recolectado.
+            </p>
+          </div>
+        </div>
+        <div class="serviceBox">
+          <div class="icon" style="--i: #cd57ff">
+            <ion-icon name="stats-chart-outline"></ion-icon>
+          </div>
+          <div class="content">
+            <h2>Reportes</h2>
+            <p>
+              generar informes sobre diferentes aspectos del sistema, como los
+              pagos a los recolectores, las ventas de café, y el rendimiento de
+              los lotes de café.
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+    <script src="/node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+
+    <script src="/js/cerarSession.js"></script>
+    <script src="/js/menuRouter.js"></script>
+  </body>
+</html>

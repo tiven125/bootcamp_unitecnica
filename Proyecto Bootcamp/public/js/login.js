@@ -26,8 +26,10 @@ document
 
           // Redirigir al usuario a la página correspondiente basándote en su rol
           if (data.data.rol === "administrador") {
+            sessionStorage.setItem("nombreUsuario", data.data.nombreUsuario);
             window.location.href = "/admin"; // Ruta para administradores
           } else if (data.data.rol === "recolector") {
+            sessionStorage.setItem("nombreUsuario", data.data.nombreUsuario);
             window.location.href = "/cafetero"; // Ruta para recolectores
           } else {
             console.log("Rol desconocido:", data.data.rol);

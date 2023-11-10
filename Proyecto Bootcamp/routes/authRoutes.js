@@ -18,21 +18,27 @@ router.post("/iniciar-sesion", authController.iniciarSesion);
 // Ruta protegida para administradores
 router.get("/admin", estaAutenticado, esAdministrador, (req, res) => {
   // Aquí deberías renderizar la vista que quieres mostrar para los administradores
-  res.render(`../views/auth/prueba.html`);
+  res.render(`../views/auth/home.html`);
 });
 
 // Ruta protegida para recolectores
 router.get("/cafetero", estaAutenticado, esRecolector, (req, res) => {
   // Aquí deberías renderizar la vista que quieres mostrar para los recolectores
-  res.render(`../views/auth/prueba.html`);
+  res.render(`../views/auth/homeCaficultor.html`);
 });
 
 router.get("", (req, res) => {
   res.render(`../views/auth/login.html`);
 });
 
-router.get("/prueba", (req, res) => {
-  res.render(`../views/auth/prueba.html`);
+// routes/authRoutes.js
+router.get("/cerrar-sesion", (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.error("Error al cerrar la sesión:", err);
+    }
+    res.redirect("/"); // Redirigir al usuario a la página de inicio después de cerrar la sesión
+  });
 });
 
 module.exports = router;
