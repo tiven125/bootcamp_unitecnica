@@ -8,24 +8,26 @@ const {
   esAdministrador,
 } = require("../middlewares/autenticacion");
 
-// Ruta protegida para administradores
+//! Ruta Para Usuarios
 router.get(
   "/gestion-usuarios",
   estaAutenticado,
   esAdministrador,
   (req, res) => {
-    // Aquí deberías renderizar la vista que quieres mostrar para los administradores
     res.render(`../views/usuarios/gestionUsuarios.html`);
   }
 );
 
-// Ruta para obtener todos los usuarios
+//? Ruta para obtener todos los usuarios
 router.get(
   "/",
   esAdministrador,
   estaAutenticado,
   usuariosController.obtenerUsuarios
 );
+
+//? Ruta para eliminar
+
 router.delete(
   "/:id",
   esAdministrador,
@@ -33,13 +35,16 @@ router.delete(
   usuariosController.eliminarUsuario
 );
 
-// Rutas para obtener y actualizar usuarios
+//? Rutas para obtener iD
 router.get(
   "/:id",
   esAdministrador,
   estaAutenticado,
   usuariosController.obtenerUsuarioPorId
 );
+
+//? Rutas para obtener iD y actualizar usuarios
+
 router.put(
   "/:id",
   esAdministrador,

@@ -1,15 +1,19 @@
+// models/Usuario.js
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/db");
 const bcrypt = require("bcrypt");
-const ROLES = require("../constants/roles");
 
 const Usuario = sequelize.define(
-  "usuario",
+  "Usuario",
   {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
     nombre_usuario: {
       type: DataTypes.STRING,
       allowNull: false,
-      field: "nombre_usuario",
     },
     email: {
       type: DataTypes.STRING,
@@ -18,17 +22,14 @@ const Usuario = sequelize.define(
       validate: {
         isEmail: true,
       },
-      field: "email",
     },
     contrasena: {
       type: DataTypes.STRING,
       allowNull: false,
-      field: "contrasena",
     },
     rol: {
-      type: DataTypes.ENUM(ROLES.ADMIN, ROLES.RECOLECTOR),
+      type: DataTypes.ENUM("admin", "recolector"),
       allowNull: false,
-      field: "rol",
     },
   },
   {
