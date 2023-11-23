@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestión de Recolectores</title>
+    <link rel="stylesheet" href="/css/stylesUsuarios.css" />
+    <link rel="stylesheet" href="/css/styleHome.css" />
+    <link rel="stylesheet" href="/css/stylesMenu.css" />
+    <link rel="stylesheet" href="/css/stylesModales.css" />
+    <link rel="shortcut icon" href="/img/plantaIco.png " type="image/x-icon" />
+
+    <link
+      rel="stylesheet"
+      href="/node_modules/sweetalert2/dist/sweetalert2.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/node_modules/tabulator-tables/dist/css/tabulator.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <a href="" target="_blank" class="logo">
+        <img src="/img/logoBanner.png" alt="logo" />
+
+        <h1>Bienvenido, <span id="mostrarNombre"></span>!</h1>
+      </a>
+      <nav>
+        <a id="btnIrMenu" class="nav-link">Inicio</a>
+        <a href="#" onclick="abrirModalAgregar(); return false;">
+          Agregar Rutas
+        </a>
+        <a id="logoutButton" class="nav-link">Cerrar Sesecion</a>
+      </nav>
+    </header>
+
+    <div id="tablaRutas"></div>
+
+    <!-- Div para la tabla de Tabulator -->
+    <div id="tablaRutas"></div>
+
+    <!-- Modal para agregar ruta -->
+    <div id="modalAgregar" class="modal">
+      <div class="modal-content">
+        <span class="close-button" onclick="cerrarModalAgregar()">&times;</span>
+        <h2>Agregar Ruta</h2>
+        <form class="sign-up-form" id="registroRutaForm">
+          <div class="input-field">
+            <label for="nombre">Nombre Ruta:</label>
+            <i class="fas fa-map-marker-alt"></i>
+            <input type="text" placeholder="Nombre" name="nombre" id="nombre" />
+          </div>
+          <div class="input-field">
+            <i class="fas fa-align-left"></i>
+            <textarea
+              placeholder="Descripción"
+              name="descripcion"
+              id="descripcion"
+            ></textarea>
+          </div>
+          <div class="input-field">
+            <i class="fas fa-road"></i>
+            <label for="kilometros">kilometros:</label>
+            <input
+              type="number"
+              placeholder="Kilómetros"
+              name="kilometros"
+              id="kilometros"
+            />
+          </div>
+          <div class="input-field">
+            <i class="fas fa-image"></i>
+            <label for="imagen">Imagen:</label>
+
+            <input
+              type="text"
+              placeholder="URL de la Imagen"
+              name="imagen"
+              id="imagen"
+            />
+          </div>
+
+          <!-- Fin del campo de categoría -->
+          <input
+            type="button"
+            class="btn"
+            value="Registrar"
+            onclick="registrarRuta()"
+          />
+        </form>
+      </div>
+    </div>
+
+    <div id="modalModificar" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="cerrarModalModificar()">&times;</span>
+        <h2>Modificar Ruta</h2>
+        <form class="sign-up-form" id="formModificarRuta">
+          <!-- Campos para modificar ruta -->
+          <div class="input-field">
+            <label for="nombre_modificar">Nombre Ruta:</label>
+            <i class="fas fa-map-marker-alt"></i>
+            <input
+              type="text"
+              placeholder="Nombre"
+              name="nombre_modificar"
+              id="nombre_modificar"
+            />
+          </div>
+          <div class="input-field">
+            <i class="fas fa-align-left"></i>
+            <textarea
+              placeholder="Descripción"
+              name="descripcion_modificar"
+              id="descripcion_modificar"
+            ></textarea>
+          </div>
+          <div class="input-field">
+            <i class="fas fa-road"></i>
+            <label for="kilometros_modificar">kilometros:</label>
+            <input
+              type="number"
+              placeholder="Kilómetros"
+              name="kilometros_modificar"
+              id="kilometros_modificar"
+            />
+          </div>
+          <div class="input-field">
+            <i class="fas fa-image"></i>
+            <label for="imagen_modificar">Imagen:</label>
+            <input
+              type="text"
+              placeholder="URL de la Imagen"
+              name="imagen_modificar"
+              id="imagen_modificar"
+            />
+          </div>
+
+          <!-- Fin del campo de categoría -->
+          <input type="hidden" id="id_modificar" name="id_modificar" value="" />
+          <input type="button" value="Modificar" onclick="modificarRuta()" />
+        </form>
+      </div>
+    </div>
+
+    <!-- Incluir el script de Tabulator desde node_modules -->
+    <script src="/node_modules/tabulator-tables/dist/js/tabulator.min.js"></script>
+    <script src="/js/tabulator/gestionRutas.js"></script>
+    <script src="/node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+    <script src="/js/cerarSession.js"></script>
+  </body>
+</html>

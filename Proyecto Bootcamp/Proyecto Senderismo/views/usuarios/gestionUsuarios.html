@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestión de Usuarios</title>
+    <link rel="stylesheet" href="/css/stylesUsuarios.css" />
+    <link rel="stylesheet" href="/css/styleHome.css" />
+    <link rel="stylesheet" href="/css/stylesMenu.css" />
+    <link rel="stylesheet" href="/css/stylesModales.css" />
+    <link rel="shortcut icon" href="/img/plantaIco.png " type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="/node_modules/sweetalert2/dist/sweetalert2.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/node_modules/tabulator-tables/dist/css/tabulator.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <a href="" target="_blank" class="logo">
+        <img src="/img/logoBanner.png" alt="logo" />
+
+        <h1>Bienvenido, <span id="mostrarNombre"></span>!</h1>
+      </a>
+      <nav>
+        <a id="btnIrMenu" class="nav-link">Inicio</a>
+        <a href="#" onclick="abrirModalAgregar(); return false;">
+          Agregar Usuario
+        </a>
+        <a id="logoutButton" class="nav-link">Cerrar Sesecion</a>
+      </nav>
+    </header>
+
+    <!-- Div para la tabla de Tabulator -->
+    <div id="tablaUsuarios"></div>
+
+    <!-- Modal para agregar usuario -->
+    <div id="modalAgregar" class="modal">
+      <div class="modal-content">
+        <span class="close-button" onclick="cerrarModalAgregar()">&times;</span>
+        <h2>Agregar Usuario</h2>
+        <form class="sign-up-form" id="registroForm">
+          <div class="input-field">
+            <i class="fas fa-user"></i>
+            <input
+              type="text"
+              placeholder="Username"
+              name="nombre_usuario"
+              id="nombre_usuario"
+            />
+          </div>
+          <div class="input-field">
+            <i class="fas fa-envelope"></i>
+            <input type="email" placeholder="Email" name="email" id="email" />
+          </div>
+          <div class="input-field">
+            <i class="fas fa-lock"></i>
+            <input
+              type="password"
+              placeholder="Password"
+              name="contrasena"
+              id="contrasena"
+            />
+          </div>
+          <div class="input-field">
+            <i class="fas fa-users"></i>
+            <select name="rol" id="rol">
+              <option value="administrador">Administrador</option>
+              <!-- <option value="recolector">Recolector</option> -->
+            </select>
+          </div>
+          <input
+            type="button"
+            class="btn"
+            value="Registrar"
+            onclick="registrarUsuario()"
+          />
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal de modificar usuario -->
+    <div id="modalModificar" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="cerrarModalModificar()">&times;</span>
+        <h2>Modificar Usuario</h2>
+        <form id="formModificarUsuario">
+          <label for="nombre_usuario_modificar">Nombre de Usuario:</label>
+          <input
+            type="text"
+            id="nombre_usuario_modificar"
+            name="nombre_usuario"
+            required
+          /><br />
+
+          <label for="email_modificar">Email:</label>
+          <input
+            type="email"
+            id="email_modificar"
+            name="email"
+            required
+          /><br />
+
+          <label for="rol_modificar">Rol:</label>
+          <select id="rol_modificar" name="rol" required>
+            <option value="administrador">Administrador</option>
+            <option value="recolector">Recolector</option></select
+          ><br />
+
+          <label for="contrasena_modificar">Contraseña:</label>
+          <input
+            type="password"
+            id="contrasena_modificar"
+            name="contrasena"
+            required
+          /><br />
+
+          <input type="hidden" id="id_modificar" name="id" />
+
+          <input type="button" value="Modificar" onclick="modificarUsuario()" />
+        </form>
+      </div>
+    </div>
+
+    <!-- Incluir el script de Tabulator desde node_modules -->
+    <script src="/node_modules/tabulator-tables/dist/js/tabulator.min.js"></script>
+    <script src="/js/tabulator/gestionUsuarios.js"></script>
+    <script src="/node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+    <script src="/js/cerarSession.js"></script>
+    <script src="/js/registro.js"></script>
+  </body>
+</html>

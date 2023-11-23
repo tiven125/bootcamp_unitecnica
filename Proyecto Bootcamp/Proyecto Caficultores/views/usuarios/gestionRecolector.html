@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestión de Recolectores</title>
+    <link rel="stylesheet" href="/css/stylesUsuarios.css" />
+    <link rel="stylesheet" href="/css/styleHome.css" />
+    <link rel="stylesheet" href="/css/stylesMenu.css" />
+    <link rel="stylesheet" href="/css/stylesModales.css" />
+    <link rel="shortcut icon" href="/img/plantaIco.png " type="image/x-icon" />
+
+    <link
+      rel="stylesheet"
+      href="/node_modules/sweetalert2/dist/sweetalert2.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/node_modules/tabulator-tables/dist/css/tabulator.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <a href="" target="_blank" class="logo">
+        <img src="/img/logoBanner.png" alt="logo" />
+
+        <h1>Bienvenido, <span id="mostrarNombre"></span>!</h1>
+      </a>
+      <nav>
+        <a id="btnIrMenu" class="nav-link">Inicio</a>
+        <a href="#" onclick="abrirModalAgregar(); return false;">
+          Agregar Recolector
+        </a>
+        <a id="logoutButton" class="nav-link">Cerrar Sesecion</a>
+      </nav>
+    </header>
+
+    <!-- Div para la tabla de Tabulator -->
+    <div id="tablaRecolectores"></div>
+
+    <!-- Modal para agregar recolector -->
+    <div id="modalAgregar" class="modal">
+      <div class="modal-content">
+        <span class="close-button" onclick="cerrarModalAgregar()">&times;</span>
+        <h2>Agregar Recolector</h2>
+        <form class="sign-up-form" id="registroRecolectorForm">
+          <div class="input-field">
+            <i class="fas fa-user"></i>
+            <input type="text" placeholder="Nombre" name="nombre" id="nombre" />
+          </div>
+          <div class="input-field">
+            <i class="fas fa-phone"></i>
+            <input
+              type="text"
+              placeholder="Teléfono"
+              name="telefono"
+              id="telefono"
+            />
+          </div>
+          <div class="input-field">
+            <i class="fas fa-map-marker-alt"></i>
+            <input
+              type="text"
+              placeholder="Dirección"
+              name="direccion"
+              id="direccion"
+            />
+          </div>
+          <div class="input-field">
+            <i class="fas fa-user"></i>
+            <select name="usuario_id" id="usuario_id" style="color: black">
+              >
+              <!-- Opciones para seleccionar el usuario -->
+            </select>
+          </div>
+          <input
+            type="button"
+            class="btn"
+            value="Registrar"
+            onclick="registrarRecolector()"
+          />
+        </form>
+      </div>
+    </div>
+
+    <div id="modalModificar" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="cerrarModalModificar()">&times;</span>
+        <h2>Modificar Recolector</h2>
+        <form id="formModificarRecolector">
+          <label for="nombre_modificar">Nombre:</label>
+          <input
+            type="text"
+            id="nombre_modificar"
+            name="nombre"
+            required
+          /><br />
+
+          <label for="telefono_modificar">Teléfono:</label>
+          <input
+            type="text"
+            id="telefono_modificar"
+            name="telefono"
+            required
+          /><br />
+
+          <label for="direccion_modificar">Dirección:</label>
+          <input
+            type="text"
+            id="direccion_modificar"
+            name="direccion"
+            required
+          /><br />
+
+          <input type="hidden" id="id_modificar" name="id" />
+
+          <input
+            type="button"
+            value="Modificar"
+            onclick="modificarRecolector()"
+          />
+        </form>
+      </div>
+    </div>
+
+    <div>Cafe Recolectado</div>
+
+    <!-- Incluir el script de Tabulator desde node_modules -->
+    <script src="/node_modules/tabulator-tables/dist/js/tabulator.min.js"></script>
+    <script src="/js/tabulator/gestionRecolector.js"></script>
+    <script src="/node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+    <script src="/js/cerarSession.js"></script>
+  </body>
+</html>

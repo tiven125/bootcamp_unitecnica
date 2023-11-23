@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestión de Recolectores</title>
+    <link rel="stylesheet" href="/css/stylesUsuarios.css" />
+    <link rel="stylesheet" href="/css/styleHome.css" />
+    <link rel="stylesheet" href="/css/stylesMenu.css" />
+    <link rel="stylesheet" href="/css/stylesModales.css" />
+    <link rel="shortcut icon" href="/img/plantaIco.png " type="image/x-icon" />
+
+    <link
+      rel="stylesheet"
+      href="/node_modules/sweetalert2/dist/sweetalert2.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/node_modules/tabulator-tables/dist/css/tabulator.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <a href="" target="_blank" class="logo">
+        <img src="/img/logoBanner.png" alt="logo" />
+
+        <h1>Bienvenido, <span id="mostrarNombre"></span>!</h1>
+      </a>
+      <nav>
+        <a id="btnIrMenu" class="nav-link">Inicio</a>
+        <a href="#" onclick="abrirModalAgregarDiario(); return false;">
+          Agregar Registro
+        </a>
+        <a id="logoutButton" class="nav-link">Cerrar Sesecion</a>
+      </nav>
+    </header>
+
+    <!-- Modal para registrar café diario -->
+    <div id="modalCafeDiario" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="cerrarModalAgregarDiario()">&times;</span>
+        <h2>Registrar Café Diario</h2>
+        <form id="formRegistrarCafeDiario">
+          <label for="cantidad_cafe_diario"
+            >Cantidad de Café Recolectado:</label
+          >
+          <input
+            type="number"
+            id="cantidad_cafe_diario"
+            name="cantidadCafeRecolectado"
+            required
+          /><br />
+
+          <!-- Campo para ingresar el ID del recolector -->
+          <label for="recolector_id_diario">ID del Recolector:</label>
+          <input
+            type="text"
+            id="recolector_id_diario"
+            name="recolectorId"
+            required
+          /><br />
+
+          <input
+            type="button"
+            value="Registrar Café Diario"
+            onclick="registrarCafeDiario()"
+          />
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal para modificar registro diario -->
+    <div id="modalModificarDiario" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="cerrarModalModificarDiario()"
+          >&times;</span
+        >
+        <h2>Modificar Registro Diario</h2>
+        <form id="formModificarDiario">
+          <label for="cantidad_cafe_diario_modificar"
+            >Cantidad de Café Recolectado:</label
+          >
+          <input
+            type="number"
+            id="cantidad_cafe_diario_modificar"
+            name="cantidadCafeRecolectado"
+            required
+          /><br />
+
+          <label for="fecha_diario_modificar">Fecha:</label>
+          <input
+            type="date"
+            id="fecha_diario_modificar"
+            name="fecha"
+            required
+          /><br />
+
+          <!-- Agregar campo para recolector_id -->
+          <label for="recolector_id_diario_modificar">ID del Recolector:</label>
+          <input
+            type="text"
+            id="recolector_id_diario_modificar"
+            name="recolectorId"
+            required
+          /><br />
+
+          <input type="hidden" id="id_diario_modificar" name="id" />
+
+          <input
+            type="button"
+            value="Modificar Registro Diario"
+            onclick="modificarRegistroDiario()"
+          />
+        </form>
+      </div>
+    </div>
+
+    <!-- Div para la tabla de Tabulator -->
+    <div id="tablaRegistrosDiarios"></div>
+
+    <!-- Incluir el script de Tabulator desde node_modules -->
+    <script src="/node_modules/tabulator-tables/dist/js/tabulator.min.js"></script>
+    <script src="/js/tabulator/registroDiario.js"></script>
+    <script src="/node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+    <script src="/js/cerarSession.js"></script>
+  </body>
+</html>
