@@ -3,21 +3,44 @@ const router = express.Router();
 
 const rutaController = require("../controller/rutasControllador");
 const authController = require("../controller/loginController");
-// const {
-//   estaAutenticado,
-//   esAdministrador,
-//   esRecolector,
-// } = require("../middlewares/autenticacion");
+const {
+  estaAutenticado,
+  esAdministrador,
+} = require("../middlewares/autenticacion");
 
 // CRUD
 
-router.get("/rutas", rutaController.obtenerRutas);
-router.get("/rutas/:id", rutaController.obtenerRutaPorId);
-router.post("/rutas", rutaController.crearRuta);
-router.put("/rutas/:id", rutaController.actualizarRuta);
-router.delete("/rutas/:id", rutaController.eliminarRuta);
+router.get(
+  "/rutas",
 
-router.get("/gestion-rutas", (req, res) => {
+  rutaController.obtenerRutas
+);
+router.get(
+  "/rutas/:id",
+  estaAutenticado,
+  esAdministrador,
+  rutaController.obtenerRutaPorId
+);
+router.post(
+  "/rutas",
+  estaAutenticado,
+  esAdministrador,
+  rutaController.crearRuta
+);
+router.put(
+  "/rutas/:id",
+  estaAutenticado,
+  esAdministrador,
+  rutaController.actualizarRuta
+);
+router.delete(
+  "/rutas/:id",
+  estaAutenticado,
+  esAdministrador,
+  rutaController.eliminarRuta
+);
+
+router.get("/gestion-rutas", estaAutenticado, esAdministrador, (req, res) => {
   res.render(`../views/usuarios/gestionRutas.html`);
 });
 

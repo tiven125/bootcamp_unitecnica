@@ -372,3 +372,7 @@ form.sign-in-form {
   border-radius: 50%;
   width: 650px;
 }
+
+.content p {
+  font-size: 25px;
+}

@@ -6,7 +6,6 @@ const authController = require("../controller/loginController");
 const {
   estaAutenticado,
   esAdministrador,
-  esRecolector,
 } = require("../middlewares/autenticacion");
 
 // Registrar Usuario
@@ -26,7 +25,7 @@ router.get("", (req, res) => {
 });
 
 // routes/authRoutes.js
-router.get("/cerrar-sesion", (req, res) => {
+router.get("/cerrar-sesion", estaAutenticado, esAdministrador, (req, res) => {
   req.session.destroy((err) => {
     if (err) {
       console.error("Error al cerrar la sesión:", err);
