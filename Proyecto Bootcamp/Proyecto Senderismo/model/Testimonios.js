@@ -1,32 +1,25 @@
+// models/Testimonio.js
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/db");
 
-const Rutas = sequelize.define("Rutas", {
+const Testimonio = sequelize.define("Testimonio", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
   },
-  nombre: {
+  autor: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  descripcion: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  kilometros: {
-    type: DataTypes.FLOAT,
-    allowNull: true,
+  contenido: {
+    type: DataTypes.TEXT,
+    allowNull: false,
   },
   imagen: {
     type: DataTypes.STRING,
     allowNull: true,
   },
-  video: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
 });
 
-module.exports = Rutas;
+module.exports = Testimonio;

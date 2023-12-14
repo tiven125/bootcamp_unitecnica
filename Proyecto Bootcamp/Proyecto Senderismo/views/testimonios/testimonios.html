@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Caminantes Cafeteros - Testimonios</title>
+    <!-- Enlace a tu hoja de estilo CSS -->
+    <link rel="stylesheet" href="css/stylesTestimonios.css" />
+    <!-- Enlace a SweetAlert CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Testimonios de Caminantes Cafeteros</h1>
+
+      <!-- Contenedor de testimonios -->
+      <div id="testimonios-container" class="testimonios-container"></div>
+
+      <!-- Formulario para agregar nuevo testimonio -->
+      <form id="form-testimonio">
+        <h2>Agregar Testimonio</h2>
+        <label for="autor">Autor:</label>
+        <input type="text" id="autor" required />
+        <label for="contenido">Contenido:</label>
+        <textarea id="contenido" required></textarea>
+        <label for="imagen">URL de la Imagen:</label>
+        <input type="text" id="imagen" />
+        <button type="submit">Agregar Testimonio</button>
+      </form>
+    </div>
+
+    <!-- Enlace a tu script JavaScript -->
+    <script src="/js/registroTestimonios.js"></script>
+  </body>
+</html>

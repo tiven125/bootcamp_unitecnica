@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detalles de la Ruta</title>
+    <link href="/principal/css/detalles.css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1>Detalles de la Ruta</h1>
+    <a href="/package" class="volver-btn">Volver al Inicio</a>
+
+    <div id="ruta-info">
+      <p id="nombre" style="font-size: 24px">Nombre de la Ruta</p>
+      <p id="descripcion" style="font-size: 18px">Descripción de la Ruta</p>
+      <p id="kilometros" style="font-size: 20px">Distancia: 10 km</p>
+      <a
+        href="https://api.whatsapp.com/send?phone=+3146425955&text=Hola%20%F0%9F%91%8B,%20%C2%A1te%20damos%20la%20bienvenida%20a%20la%20familia%20de%20Caminantes%20Cafeteros!%20%E2%98%95%E2%9C%A8%20Explora%20con%20nosotros%20los%20senderos%20del%20buen%20caf%C3%A9%20y%20disfruta%20cada%20paso.%20"
+        target="_blank"
+        class="whatsapp-btn"
+        >Contactar por WhatsApp</a
+      >
+
+      <img
+        id="imagen"
+        src="ruta-imagen.jpg"
+        alt="Imagen de la Ruta"
+        style="max-width: 400px; height: auto"
+      />
+
+      <div id="video-container" style="flex: 1 1 40%; margin-left: 20px">
+        <iframe
+          id="video-iframe"
+          width="100%"
+          height="450"
+          frameborder="0"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </div>
+
+    <script>
+      // Obtén la URL actual del navegador
+      const currentURL = window.location.href;
+      // Divide la URL en partes usando la barra como separador
+      const urlParts = currentURL.split("/");
+      // Encuentra el último elemento de la matriz que debería ser el número que buscas
+      const numeroEnRuta = urlParts[urlParts.length - 1];
+
+      // Obtener el ID de la ruta desde la URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const rutaId = urlParams.get("id");
+
+      // Hacer una solicitud para obtener los detalles de la ruta por ID
+      fetch(`/rutas/${numeroEnRuta}`)
+        .then((response) => response.json())
+        .then((data) => {
+          // Rellenar los elementos HTML con los detalles de la ruta
+          document.getElementById(
+            "nombre"
+          ).innerText = `Nombre: ${data.nombre}`;
+          document.getElementById(
+            "descripcion"
+          ).innerText = `Descripción: ${data.descripcion}`;
+          document.getElementById(
+            "kilometros"
+          ).innerText = `Kilómetros: ${data.kilometros}`;
+          document.getElementById("imagen").src = data.imagen; // Asignar la imagen al elemento img
+
+          // Verificar si hay un video en los datos de la ruta
+          if (data.video) {
+            // Asignar la URL del video al atributo src del elemento iframe
+            document.getElementById(
+              "video-iframe"
+            ).src = `https://player.vimeo.com/video/${getVimeoVideoId(
+              data.video
+            )}`;
+          } else {
+            // Ocultar el contenedor de video si no hay URL de video
+            document.getElementById("video-container").style.display = "none";
+          }
+        })
+        .catch((error) =>
+          console.error("Error al obtener detalles de la ruta:", error)
+        );
+
+      // Función para obtener el ID del video de una URL de Vimeo
+      function getVimeoVideoId(url) {
+        const match = url.match(/vimeo\.com\/(\d+)/);
+        return match ? match[1] : null;
+      }
+    </script>
+  </body>
+</html>

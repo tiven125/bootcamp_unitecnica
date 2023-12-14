@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestión de Testimonios</title>
+    <link rel="stylesheet" href="/css/stylesUsuarios.css" />
+    <link rel="stylesheet" href="/css/styleHome.css" />
+    <link rel="stylesheet" href="/css/stylesMenu.css" />
+    <link rel="stylesheet" href="/css/stylesModales.css" />
+    <link rel="shortcut icon" href="/img/plantaIco.png" type="image/x-icon" />
+
+    <link
+      rel="stylesheet"
+      href="/node_modules/sweetalert2/dist/sweetalert2.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/node_modules/tabulator-tables/dist/css/tabulator.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <a href="" target="_blank" class="logo">
+        <img src="/img/logoBanner.png" alt="logo" />
+        <h1>Bienvenido, <span id="mostrarNombre"></span>!</h1>
+      </a>
+      <nav>
+        <a href="/admin" id="btnIrMenu" class="nav-link">Inicio</a>
+        <a href="/crear-testimonio"  return false;"
+          >Agregar Rutas</a
+        >
+        <a id="logoutButton" class="nav-link">Cerrar Sesión</a>
+      </nav>
+    </header>
+
+    <!-- Div para la tabla de Tabulator -->
+    <div id="tablaTestimonios"></div>
+
+    <!-- Modal para modificar ruta -->
+    <div id="modalModificar" class="modal">
+      <!-- ... Contenido del modal ... -->
+    </div>
+
+    <!-- Incluir el script de Tabulator desde node_modules -->
+    <script src="/node_modules/tabulator-tables/dist/js/tabulator.min.js"></script>
+    <script src="/js/tabulator/gestionTestimonios.js"></script>
+    <script src="/node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+    <script src="/js/cerarSession.js"></script>
+  </body>
+</html>

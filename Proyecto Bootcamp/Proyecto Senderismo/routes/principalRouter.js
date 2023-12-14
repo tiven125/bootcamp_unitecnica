@@ -10,23 +10,10 @@ const {
 
 // CRUD
 
-router.get(
-  "/rutas",
+router.get("/rutas", rutaController.obtenerRutas);
+router.get("/rutas/:id", rutaController.obtenerRutaPorId);
 
-  rutaController.obtenerRutas
-);
-router.get(
-  "/rutas/:id",
-  estaAutenticado,
-  esAdministrador,
-  rutaController.obtenerRutaPorId
-);
-router.post(
-  "/rutas",
-  estaAutenticado,
-  esAdministrador,
-  rutaController.crearRuta
-);
+router.post("/rutas", rutaController.crearRuta);
 router.put(
   "/rutas/:id",
   estaAutenticado,

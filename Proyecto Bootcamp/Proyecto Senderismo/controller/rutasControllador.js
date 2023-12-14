@@ -27,13 +27,14 @@ const rutasController = {
   },
 
   crearRuta: async (req, res) => {
-    const { nombre, descripcion, kilometros, imagen } = req.body;
+    const { nombre, descripcion, kilometros, imagen, video } = req.body;
     try {
       const nuevaRuta = await Ruta.create({
         nombre,
         descripcion,
         kilometros,
         imagen,
+        video,
       });
       res.status(201).json(nuevaRuta);
     } catch (error) {
@@ -44,14 +45,14 @@ const rutasController = {
 
   actualizarRuta: async (req, res) => {
     const { id } = req.params;
-    const { nombre, descripcion, kilometros, imagen } = req.body;
+    const { nombre, descripcion, kilometros, imagen, video } = req.body;
     try {
       const ruta = await Ruta.findByPk(id);
       if (!ruta) {
         res.status(404).json({ error: "Ruta no encontrada" });
         return;
       }
-      await ruta.update({ nombre, descripcion, kilometros, imagen });
+      await ruta.update({ nombre, descripcion, kilometros, imagen, video });
       res.json(ruta);
     } catch (error) {
       console.error("Error al actualizar la ruta:", error);

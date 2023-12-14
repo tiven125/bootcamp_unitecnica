@@ -2,18 +2,25 @@ const tablaUsuarios = new Tabulator("#tablaUsuarios", {
   height: "100%", // Altura de la tabla
   layout: "fitColumns", // Ajustar columnas al ancho disponible
   columns: [
-    { title: "ID", field: "id", cssClass: "red-text" },
+    { title: "ID", field: "id", cssClass: "red-text", headerFilter: "input" },
     {
       title: "Nombre de Usuario",
       field: "nombre_usuario",
       cssClass: "red-text",
+      headerFilter: "input",
     },
     {
       title: "Rol",
       field: "rol",
       cssClass: "red-text",
+      headerFilter: "input",
     },
-    { title: "Email", field: "email", cssClass: "red-text" },
+    {
+      title: "Email",
+      field: "email",
+      cssClass: "red-text",
+      headerFilter: "input",
+    },
     { title: "Contraseña", field: "contrasena", cssClass: "red-text" }, // Agregada columna de contraseña
 
     // Columna para los botones de acción
@@ -132,6 +139,48 @@ function abrirModalModificar(idUsuario) {
 function cerrarModalModificar() {
   // Ocultar el modal
   document.getElementById("modalModificar").style.display = "none";
+}
+
+async function modificarUsuario() {
+  const id = document.getElementById("id_modificar").value;
+  const nombre_usuario = document.getElementById(
+    "nombre_usuario_modificar"
+  ).value;
+  const email = document.getElementById("email_modificar").value;
+  const rol = document.getElementById("rol_modificar").value;
+  const contrasena = document.getElementById("contrasena_modificar").value;
+
+  try {
+    const response = await fetch(`/usuarios/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nombre_usuario: nombre_usuario,
+        email: email,
+        rol: rol,
+        contrasena: contrasena,
+      }),
+    });
+
+    if (response.ok) {
+      // Si la modificación fue exitosa, actualizar la tabla y mostrar un mensaje de éxito
+      tablaUsuarios.setData("/usuarios");
+      Swal.fire("¡Éxito!", "Usuario modificado con éxito", "success");
+    } else {
+      // Si hubo un error, mostrar un mensaje de error
+      Swal.fire("Error", "Error al modificar el usuario", "error");
+    }
+  } catch (error) {
+    console.error("Error en la solicitud:", error);
+    // Si hubo un error de red, mostrar un mensaje de error
+    Swal.fire(
+      "Error en la red",
+      "Error en la red al intentar modificar el usuario",
+      "error"
+    );
+  }
 }
 
 async function obtenerUsuarioPorId(idUsuario) {

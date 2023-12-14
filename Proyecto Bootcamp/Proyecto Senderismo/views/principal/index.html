@@ -55,6 +55,11 @@
       rel="stylesheet"
     />
 
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+
     <!-- Customized Bootstrap Stylesheet -->
     <link href="/principal/css/style.css" rel="stylesheet" />
   </head>
@@ -74,6 +79,7 @@
           <div class="col-lg-6 text-center text-lg-right">
             <div class="d-inline-flex align-items-center">
               <a
+                target="_blank"
                 class="text-primary px-3"
                 href="https://www.facebook.com/profile.php?id=100091402111970&mibextid=ZbWKwL"
               >
@@ -81,10 +87,17 @@
               </a>
 
               <a
+                target="_blank"
                 class="text-primary px-3"
                 href="https://www.instagram.com/tiven125/?igshid=NzZlODBkYWE4Ng%3D%3D"
               >
                 <i class="fab fa-instagram"></i>
+              </a>
+              <a
+                class="text-primary px-3"
+                target="_blank"
+                href="https://api.whatsapp.com/send?phone=+3146425955&text=Hola%20%F0%9F%91%8B,%20%C2%A1te%20damos%20la%20bienvenida%20a%20la%20familia%20de%20Caminantes%20Cafeteros!%20%E2%98%95%E2%9C%A8%20Explora%20con%20nosotros%20los%20senderos%20del%20buen%20caf%C3%A9%20y%20disfruta%20cada%20paso.%20"
+                ><i class="fab fa-whatsapp"></i>
               </a>
             </div>
           </div>
@@ -124,7 +137,6 @@
               <a href="/about" class="nav-item nav-link">Nosotros</a>
               <a href="/package" class="nav-item nav-link">Rutas</a>
               <a href="/contact" class="nav-item nav-link">Contacto</a>
-              <a href="/" class="nav-item nav-link">Login</a>
             </div>
           </div>
         </nav>
@@ -133,6 +145,7 @@
     <!-- Navbar End -->
 
     <!-- Carousel Start -->
+
     <div class="container-fluid p-0">
       <div id="header-carousel" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
@@ -157,6 +170,7 @@
               </div>
             </div>
           </div>
+
           <div class="carousel-item">
             <img
               class="w-100"
@@ -169,6 +183,27 @@
               <div class="p-3" style="max-width: 900px">
                 <h1 class="display-3 text-white mb-md-4">
                   Cafeteros de Chincha: ¡Explora con nosotros
+                </h1>
+                <a
+                  href="https://www.facebook.com/profile.php?id=100091402111970"
+                  class="btn btn-primary py-md-3 px-md-5 mt-2"
+                  >Unirse</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img
+              class="w-100"
+              src="/principal/img/cafemarsella.jpeg"
+              alt="Image"
+            />
+            <div
+              class="carousel-caption d-flex flex-column align-items-center justify-content-center"
+            >
+              <div class="p-3" style="max-width: 900px">
+                <h1 class="display-3 text-white mb-md-4">
+                  La resistencia viene del corazón
                 </h1>
                 <a
                   href="https://www.facebook.com/profile.php?id=100091402111970"
@@ -224,7 +259,7 @@
               </h6>
               <h1 class="mb-3">Café en el Alma, Naturaleza en el Camino</h1>
               <p>
-                El nombre "Cafeteros de Chincha" refleja nuestra identidad
+                El nombre "Cafeteros de Chinchina" refleja nuestra identidad
                 única. Así como los cafeteros cuidan con amor sus cosechas,
                 nosotros cuidamos con devoción cada paso que damos en nuestros
                 senderos. Somos un grupo unido, como los granos de café en una
@@ -298,13 +333,15 @@
                 <h1 class="text-white m-0">Regístrate ahora</h1>
               </div>
               <div class="card-body rounded-bottom bg-white p-5">
-                <form>
+                <!-- HTML del formulario -->
+                <form id="formularioCorreo">
                   <div class="form-group">
                     <input
                       type="text"
                       class="form-control p-4"
                       placeholder="Nombre"
                       required="required"
+                      id="nombre"
                     />
                   </div>
                   <div class="form-group">
@@ -313,22 +350,25 @@
                       class="form-control p-4"
                       placeholder="Correo"
                       required="required"
+                      id="correo"
                     />
                   </div>
-                  <div class="form-group">
-                    <select class="custom-select px-4" style="height: 47px">
-                      <option selected>Selecione la ruta</option>
-                      <option value="1">destination 1</option>
-                      <option value="2">destination 1</option>
-                      <option value="3">destination 1</option>
-                    </select>
-                  </div>
+                  <select
+                    id="selectRutas"
+                    class="custom-select px-4"
+                    style="height: 47px"
+                  >
+                    <option selected>Selecciona la ruta</option>
+                    <!-- Aquí puedes agregar opciones de rutas dinámicamente -->
+                  </select>
+
                   <div>
                     <button
                       class="btn btn-primary btn-block py-3"
-                      type="submit"
+                      type="button"
+                      onclick="enviarCorreo()"
                     >
-                      Sign Up Now
+                      Enviar Correo
                     </button>
                   </div>
                 </form>
@@ -344,75 +384,21 @@
     <div class="container-fluid py-5">
       <div class="container py-5">
         <div class="text-center mb-3 pb-3">
-          <h6 class="text-primary text-uppercase" style="letter-spacing: 5px">
-            Testimonio
-          </h6>
+          <h2 class="text-primary text-uppercase" style="letter-spacing: 5px">
+            Testimonios
+          </h2>
+          <a href="/crear-testimonio">Agregar</a>
         </div>
-        <div class="owl-carousel testimonial-carousel">
-          <div class="text-center pb-4">
-            <img
-              class="img-fluid mx-auto"
-              src="/principal/img/testimonial-1.jpg"
-              style="width: 100px; height: 100px"
-            />
-            <div class="testimonial-text bg-white p-4 mt-n5">
-              <p class="mt-5">
-                Caminar con los Cafeteros de Chincha no solo fue un ejercicio
-                para el cuerpo, sino un bálsamo para el alma. La compañía, las
-                risas y la naturaleza hicieron que cada paso fuera una terapia
-                en sí mismo.
-              </p>
-              <h5 class="text-truncate">Juan</h5>
-            </div>
+
+        <div id="testimonios-container" class="swiper-container">
+          <div class="swiper-wrapper">
+            <!-- Las diapositivas del carrusel se agregarán aquí dinámicamente -->
           </div>
-          <div class="text-center">
-            <img
-              class="img-fluid mx-auto"
-              src="/principal/img/testimonial-2.jpg"
-              style="width: 100px; height: 100px"
-            />
-            <div class="testimonial-text bg-white p-4 mt-n5">
-              <p class="mt-5">
-                El sonido de los pájaros, el aroma a tierra mojada después de la
-                lluvia ligera, y la calidez de la gente de Cafeteros de Chincha
-                crearon una experiencia sensorial única. Cada paso estaba lleno
-                de maravillas que solo un grupo como este puede ofrecer.
-              </p>
-              <h5 class="text-truncate">Ana</h5>
-            </div>
-          </div>
-          <div class="text-center">
-            <img
-              class="img-fluid mx-auto"
-              src="/principal/img/testimonial-3.jpg"
-              style="width: 100px; height: 100px"
-            />
-            <div class="testimonial-text bg-white p-4 mt-n5">
-              <p class="mt-5">
-                Caminar entre árboles antiguos y senderos serpenteantes con
-                Cafeteros de Chincha fue como sumergirse en un cuento de hadas
-                natural. No solo exploramos la naturaleza, sino que también
-                descubrimos la magia de la comunidad en cada rincón del camino
-              </p>
-              <h5 class="text-truncate">Carlos</h5>
-            </div>
-          </div>
-          <div class="text-center">
-            <img
-              class="img-fluid mx-auto"
-              src="/principal/img/testimonial-4.jpg"
-              style="width: 100px; height: 100px"
-            />
-            <div class="testimonial-text bg-white p-4 mt-n5">
-              <p class="mt-5">
-                Las colinas se volvieron testigos de nuestra travesía, pero los
-                Cafeteros de Chincha se convirtieron en compañeros de camino.
-                Compartimos historias, aprendimos de la naturaleza y dejamos que
-                cada paso nos acercara un poco más a la plenitud
-              </p>
-              <h5 class="text-truncate">Luis</h5>
-            </div>
-          </div>
+          <!-- Agrega la paginación del carrusel si lo deseas -->
+          <div class="swiper-pagination"></div>
+          <!-- Agrega las flechas de navegación si lo deseas -->
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
         </div>
       </div>
     </div>
@@ -440,11 +426,13 @@
           ></h6>
           <div class="d-flex justify-content-start">
             <a
+              target="_blank"
               class="btn btn-outline-primary btn-square mr-2"
               href="https://www.facebook.com/profile.php?id=100091402111970&mibextid=ZbWKwL"
               ><i class="fab fa-facebook-f"></i
             ></a>
             <a
+              target="_blank"
               class="btn btn-outline-primary btn-square"
               href="https://www.instagram.com/tiven125/?igshid=NzZlODBkYWE4Ng%3D%3D"
               ><i class="fab fa-instagram"></i
@@ -492,10 +480,13 @@
     </div>
     <!-- Footer End -->
 
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"
-      ><i class="fa fa-angle-double-up"></i
-    ></a>
+    <!-- whatsapp -->
+    <a
+      target="_blank"
+      href="https://api.whatsapp.com/send?phone=+3146425955&text=Hola%20%F0%9F%91%8B,%20%C2%A1te%20damos%20la%20bienvenida%20a%20la%20familia%20de%20Caminantes%20Cafeteros!%20%E2%98%95%E2%9C%A8%20Explora%20con%20nosotros%20los%20senderos%20del%20buen%20caf%C3%A9%20y%20disfruta%20cada%20paso.%20"
+      class="btn btn-lg btn-primary btn-lg-square back-to-top"
+      ><i class="fab fa-whatsapp" style="color: white"></i>
+    </a>
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -505,9 +496,11 @@
     <script src="/principal/lib/tempusdominus/js/moment.min.js"></script>
     <script src="/principal/lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="/principal/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
     <!-- Template Javascript -->
     <script src="/principal/js/main.js"></script>
     <script src="/principal/js/mostrarRutas.js"></script>
+    <script src="/principal/js/selecionarRutas.js"></script>
   </body>
 </html>

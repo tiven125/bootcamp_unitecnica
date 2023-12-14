@@ -64,6 +64,7 @@
                 <div class="col-lg-6 text-center text-lg-right">
                     <div class="d-inline-flex align-items-center">
               <a
+              target="_blank"
                 class="text-primary px-3"
                 href="https://www.facebook.com/profile.php?id=100091402111970&mibextid=ZbWKwL"
               >
@@ -71,10 +72,17 @@
               </a>
 
               <a
+                target="_blank"
                 class="text-primary px-3"
                 href="https://www.instagram.com/tiven125/?igshid=NzZlODBkYWE4Ng%3D%3D"
               >
                 <i class="fab fa-instagram"></i>
+              </a>
+                 <a
+                class="text-primary px-3"
+                target="_blank"
+                href="https://api.whatsapp.com/send?phone=+3146425955&text=Hola%20%F0%9F%91%8B,%20%C2%A1te%20damos%20la%20bienvenida%20a%20la%20familia%20de%20Caminantes%20Cafeteros!%20%E2%98%95%E2%9C%A8%20Explora%20con%20nosotros%20los%20senderos%20del%20buen%20caf%C3%A9%20y%20disfruta%20cada%20paso.%20"
+                ><i class="fab fa-whatsapp"></i>
               </a>
             </div>
                 </div>
@@ -100,8 +108,6 @@
                         <a href="/about" class="nav-item nav-link">Nosotros</a>
                         <a href="/package" class="nav-item nav-link active">Rutas</a>
                         <a href="/contact" class="nav-item nav-link">Contacto</a>
-                        <a href="/" class="nav-item nav-link">Login</a>
-
                     </div>
                 </div>
             </nav>
@@ -134,9 +140,31 @@
                 <h1>Explore nustras Rutas</h1>
             </div>
           
-               <div id="contenedorRutas" class="row">
-            <!-- Aquí se agregarán dinámicamente las rutas -->
-          </div>
+
+<div id="filtros">
+  <label for="filtroNombre">Nombre:</label>
+  <input type="text" id="filtroNombre">
+
+ <label for="filtroDescripcion">Filtrar por Descripción:</label>
+ 
+<select id="filtroDescripcion">
+  <option value="">Seleccionar</option>
+  <option value="baja">Baja</option>
+  <option value="media">Media</option>
+  <option value="alta">Alta</option>
+</select>
+
+  <label for="filtroKilometros">Kilómetros:</label>
+  <div id="filtroKilometros">
+    <button onclick="filtrarPorKilometros('mayor')">Mayor</button>
+    <button onclick="filtrarPorKilometros('menor')">Menor</button>
+  </div>
+
+  <button onclick="aplicarFiltros()">Aplicar Filtros</button>
+</div>
+
+<div id="contenedorRutas"></div>
+
             </div>
         </div>
     </div>
@@ -245,11 +273,14 @@
           ></h6>
           <div class="d-flex justify-content-start">
              <a
+               target="_blank"
               class="btn btn-outline-primary btn-square mr-2"
               href="https://www.facebook.com/profile.php?id=100091402111970&mibextid=ZbWKwL"
               ><i class="fab fa-facebook-f"></i
             ></a>
             <a
+          target="_blank"
+
               class="btn btn-outline-primary btn-square"
               href="https://www.instagram.com/tiven125/?igshid=NzZlODBkYWE4Ng%3D%3D"
               ><i class="fab fa-instagram"></i
@@ -296,9 +327,13 @@
     </div>
     <!-- Footer End -->
 
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
-
+    <!-- whatsapp -->
+     <a
+      target="_blank"
+      href="https://api.whatsapp.com/send?phone=+3146425955&text=Hola%20%F0%9F%91%8B,%20%C2%A1te%20damos%20la%20bienvenida%20a%20la%20familia%20de%20Caminantes%20Cafeteros!%20%E2%98%95%E2%9C%A8%20Explora%20con%20nosotros%20los%20senderos%20del%20buen%20caf%C3%A9%20y%20disfruta%20cada%20paso.%20"
+      class="btn btn-lg btn-primary btn-lg-square back-to-top"
+      ><i class="fab fa-whatsapp" style="color: white"></i>
+    </a>
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

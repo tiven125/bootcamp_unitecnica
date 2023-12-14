@@ -3,13 +3,42 @@ const tablaRutas = new Tabulator("#tablaRutas", {
   height: "100%", // Altura de la tabla
   layout: "fitColumns", // Ajustar columnas al ancho disponible
   columns: [
-    { title: "ID", field: "id", cssClass: "red-text" },
-    { title: "Nombre", field: "nombre", cssClass: "red-text" },
-    { title: "Descripción", field: "descripcion", cssClass: "red-text" },
-    { title: "Kilómetros", field: "kilometros", cssClass: "red-text" },
-    { title: "Imagen", field: "imagen", cssClass: "red-text" },
+    { title: "ID", field: "id", cssClass: "red-text", headerFilter: "input" },
+    {
+      title: "Nombre",
+      field: "nombre",
+      cssClass: "red-text",
+      headerFilter: "input",
+    },
+    {
+      title: "Descripción",
+      field: "descripcion",
+      cssClass: "red-text",
+      headerFilter: "input",
+    },
+    {
+      title: "Kilómetros",
+      field: "kilometros",
+      cssClass: "red-text",
+      headerFilter: "input",
+    },
+    {
+      title: "Imagen",
+      field: "imagen",
+      cssClass: "red-text",
+      headerFilter: "input",
+    },
+    {
+      title: "Video",
+      field: "video",
+      cssClass: "red-text",
+      headerFilter: "input",
+    },
     { title: "Acciones", formatter: accionesFormatter, cssClass: "acciones" },
   ],
+  // Barra de búsqueda incorporada
+  headerFilterPlaceholder: "Buscar...",
+  headerFilterLiveFilter: true,
 });
 
 // Botón para ir al menú
@@ -119,6 +148,7 @@ function abrirModalModificar(id) {
       document.getElementById("descripcion_modificar").value = ruta.descripcion;
       document.getElementById("kilometros_modificar").value = ruta.kilometros;
       document.getElementById("imagen_modificar").value = ruta.imagen;
+      document.getElementById("video_modificar").value = ruta.video;
 
       // Establecer el ID en un campo oculto
       document.getElementById("id_modificar").value = id;
@@ -147,9 +177,10 @@ function registrarRuta() {
   const descripcion = document.getElementById("descripcion").value;
   const kilometros = document.getElementById("kilometros").value;
   const imagen = document.getElementById("imagen").value;
+  const video = document.getElementById("video").value;
 
   // Validar los campos (puedes personalizar esta parte según tus necesidades)
-  if (!nombre || !descripcion || !kilometros || !imagen) {
+  if (!nombre || !descripcion || !kilometros || !imagen || !video) {
     Swal.fire({
       icon: "warning",
       title: "Campos incompletos",
@@ -169,6 +200,7 @@ function registrarRuta() {
       descripcion,
       kilometros,
       imagen,
+      video,
     }),
   })
     .then((response) => response.json())
@@ -199,6 +231,7 @@ async function modificarRuta() {
   const descripcion = document.getElementById("descripcion_modificar").value;
   const kilometros = document.getElementById("kilometros_modificar").value;
   const imagen = document.getElementById("imagen_modificar").value;
+  const video = document.getElementById("video_modificar").value;
 
   try {
     const response = await fetch(`/rutas/${id}`, {
@@ -211,6 +244,7 @@ async function modificarRuta() {
         descripcion,
         kilometros,
         imagen,
+        video,
       }),
     });
 
